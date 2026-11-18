@@ -50,3 +50,22 @@ jobs:
           severity: HIGH,CRITICAL
           exit-code: '1'
 
+  deploy:
+    name: Оқу стендіне орналастыру
+    needs: check
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Кодты жүктеу
+        uses: actions/checkout@v4
+
+      - name: Docker образын жинау
+        run: docker build -t lab10:latest .
+
+      - name: Оқу стендінде тексеру
+        run: |
+          docker run --rm lab10:latest > output.txt
+          cat output.txt
+          grep -q "Өтінімнің басымдылығы:" output.txt
+
