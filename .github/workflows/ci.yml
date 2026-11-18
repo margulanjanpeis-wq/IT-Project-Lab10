@@ -1,0 +1,29 @@
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Кодты жүктеу
+        uses: actions/checkout@v4
+
+      - name: Python орнату
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Кітапханаларды орнату
+        run: pip install -r requirements.txt
+
+      - name: Код сапасын тексеру
+        run: ruff check .
+
+      - name: Автоматты тесттер
+        run: pytest -q --cov=src --cov-fail-under=60
