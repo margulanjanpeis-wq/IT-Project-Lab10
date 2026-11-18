@@ -25,5 +25,9 @@ jobs:
       - name: Код сапасын тексеру
         run: ruff check .
 
+      
       - name: Автоматты тесттер
+        env:
+          PYTHONPATH: .
         run: pytest -q --cov=src --cov-fail-under=60
+
