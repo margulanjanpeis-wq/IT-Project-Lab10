@@ -38,12 +38,14 @@ for run in response.json()["workflow_runs"]:
                 "commit"
             ]["committer"]["date"]
 
+            
             start = datetime.fromisoformat(
-                commit_date.replace("Z", "+00:00")
+                commit_date
             )
             end = datetime.fromisoformat(
-                job["completed_at"].replace("Z", "+00:00")
+                job["completed_at"]
             )
+
 
             hours = (end - start).total_seconds() / 3600
             lead_times.append(hours)
