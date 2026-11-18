@@ -36,3 +36,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Docker контейнерін жинау
+        run: docker build -t it-project-lab10:${{ github.sha }} .
+
+      - name: Docker контейнерін тексеру
+        run: docker run --rm it-project-lab10:${{ github.sha }}
+
