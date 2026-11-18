@@ -42,3 +42,11 @@ jobs:
       - name: Docker контейнерін тексеру
         run: docker run --rm it-project-lab10:${{ github.sha }}
 
+
+      - name: Trivy қауіпсіздік тексеруі
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: fs
+          scan-ref: .
+          severity: HIGH,CRITICAL
+          exit-code: '1'
