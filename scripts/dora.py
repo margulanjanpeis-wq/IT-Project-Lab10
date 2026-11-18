@@ -1,6 +1,8 @@
 
-import requests
+
 import pandas as pd
+import requests
+
 
 REPO = "margulanjanpeis-wq/IT-Project-Lab10"
 
